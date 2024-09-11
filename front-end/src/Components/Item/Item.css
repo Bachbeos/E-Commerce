@@ -1,0 +1,35 @@
+.item {
+    width: 280px;
+    display: block;
+    
+}
+
+.item:hover {
+    transform: scale(1.05);
+    transition: .6s;
+}
+
+.item p {
+    margin: 6px 0;
+    max-width: 100%;
+    font-size: 1.4rem;
+    text-align: justify;
+}
+
+.item-prices {
+    display: flex;
+    gap: 20px;
+}
+
+.item-price-new {
+    color: var(--price-new-color);
+    font-size: 1.8rem;
+    font-weight: 500;
+}
+
+.item-price-low {
+    color: var(--price-old-color);
+    font-size: 1.8rem;
+    font-weight: 400;
+    text-decoration: line-through;
+}

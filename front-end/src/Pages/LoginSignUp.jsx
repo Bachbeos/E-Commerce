@@ -1,20 +1,45 @@
-import React from 'react'
+import React, { useState } from 'react'
 import './CSS/LoginSignUp.css'
 
 const LoginSignUp = () => {
+
+  const [state,setState] = useState("Login");
+  const [formData,setFromData] = useState({
+    username: "",
+    password: "",
+    email: ""
+  })
+
+  const changeHandler = (e) => {
+    setFromData({...formData,[e.target.name]:e.target.value})
+  }
+
+  const login = async () => {
+    console.log("Login Function Executed", formData)
+  }
+
+  const signup = async () => {
+    console.log("Signup Function Executed", formData)
+  }
+
   return (
     <div className='loginsignup'>
         <div className="loginsignup-container">
-          <h1>Sign Up</h1>
+          <h1>{state}</h1>
           <div className="loginsignup-fields">
-            <input type="text" placeholder='Your Name' />
-            <input type="email" placeholder='Email Address' />
-            <input type="password" placeholder='Password' />
+            {state==="Sign Up"?<input name='username' value={formData.username} onChange={changeHandler} type="text" placeholder='Your Name' />:<></>}
+            <input name='email' value={formData.email} onChange={changeHandler} type="email" placeholder='Email Address' />
+            <input name='password' value={formData.password} onChange={changeHandler} type="password" placeholder='Password' />
           </div>
-          <button>Continue</button>
+          <button onClick={()=>{state==="Login"?login():signup()}}>Continue</button>
+          {state==="Sign Up"?
           <p className='loginsignup-login'>
-            Already have an account? <span>Login here</span>
+            Already have an account? <span onClick={()=>{setState("Login")}}>Login here</span>
           </p>
+          :
+          <p className='loginsignup-login'>
+            Create an account? <span onClick={()=>{setState("Sign Up")}}>Click here</span>
+          </p>}         
           <div className="loginsignup-agree">
             <input type="checkbox" name='' id='' />
             <p>By continuing, i agree to the term of use & privacy policy. </p>
